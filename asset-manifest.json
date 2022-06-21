@@ -1,0 +1,21 @@
+{
+  "files": {
+    "main.css": "/kanban/static/css/main.467a45a1.css",
+    "main.js": "/kanban/static/js/main.00c45adf.js",
+    "static/media/logo-light.svg": "/kanban/static/media/logo-light.1e20d87d61c965503a5323cc3bd2c827.svg",
+    "index.html": "/kanban/index.html",
+    "static/media/icon-board-purple-dark.svg": "/kanban/static/media/icon-board-purple-dark.7d2aa674f7a152797520725d5b5f1284.svg",
+    "static/media/icon-board-white.svg": "/kanban/static/media/icon-board-white.2120866dd6aa97fc375cb1e054fa9b6d.svg",
+    "static/media/icon-board.svg": "/kanban/static/media/icon-board.29b48f5174742b4dd3a04f52d710293c.svg",
+    "static/media/icon-vertical-ellipsis.svg": "/kanban/static/media/icon-vertical-ellipsis.5c8996197d4a9dd7a7adfa20ce4abef9.svg",
+    "static/media/icon-add-task-mobile-gray.svg": "/kanban/static/media/icon-add-task-mobile-gray.e9beda75535c1755ebb12a0b511b3374.svg",
+    "static/media/icon-add-task-mobile-purple-dark.svg": "/kanban/static/media/icon-add-task-mobile-purple-dark.da5b75cf55eac4e477afa322e0771c05.svg",
+    "static/media/icon-add-task-mobile.svg": "/kanban/static/media/icon-add-task-mobile.2a8e26ad102dab09554faa37c9d62c19.svg",
+    "main.467a45a1.css.map": "/kanban/static/css/main.467a45a1.css.map",
+    "main.00c45adf.js.map": "/kanban/static/js/main.00c45adf.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.467a45a1.css",
+    "static/js/main.00c45adf.js"
+  ]
+}
