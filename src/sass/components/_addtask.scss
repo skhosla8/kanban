@@ -1,0 +1,115 @@
+@use '../abstracts/variables' as *;
+
+.add-task {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 16%;
+    left: 17%;
+    background-color: $gray-dark;
+    color: $white;
+    width: 300px;
+    height: auto;
+    padding: 1.2rem;
+    border-radius: 6px;
+    z-index: 1000;
+
+    &__title {
+        font-size: 0.8rem;
+        word-spacing: 0.1rem;
+    }
+
+    label {
+        font-size: 0.65rem;
+        margin: 1rem 0 0.3rem;
+    }
+
+    input {
+        padding: 7px 0;
+        border: 0.5px solid rgba(130, 143, 163, 0.3);
+        background-color: transparent;
+        font-size: 0.7rem;
+        color: $white;
+        border-radius: 4px;
+        outline: none;
+        padding-left: 0.8rem;
+
+        &::placeholder {
+            font-size: 0.65rem;
+            opacity: 0.7;
+        }
+    }
+
+    #add-task-description {
+        padding-right: 1rem;
+        padding-bottom: 3rem;
+
+        &::placeholder {
+            white-space: pre-line;
+            line-height: 1rem;
+        }
+    }
+
+    #subtasks-container {
+        margin-top: 0.8rem;
+    }
+
+    &__subtask {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+
+        input {
+            width: 100%;
+            margin-bottom: 0.5rem;
+
+            &:nth-of-type(1) {
+                margin-top: 0.1rem;
+            }
+        }
+
+        span {
+            font-size: 1.4rem;
+            margin-left: 0.4rem;
+            margin-top: -0.7rem;
+            color: $gray-slate;
+            cursor: pointer;
+            padding: 0;
+        }
+    }
+
+    button {
+        border: none;
+        padding: 0.5rem 0.9rem;
+        border-radius: 35px;
+        font-size: 0.7rem;
+        cursor: pointer;
+
+        &:nth-of-type(1) {
+            background-color: $white;
+            color: $purple-dark;
+        }
+
+        &:nth-of-type(2) {
+            background-color: $purple-dark;
+            color: $white;
+            margin-top: 1.2rem;
+        }
+
+        img {
+            margin-right: 0.2rem;
+            width: 6px;
+            height: 6px;
+        }
+    }
+
+    select {
+        background-color: transparent;
+        color: $white;
+        font-size: 0.65rem;
+        border: 0.5px solid rgba(130, 143, 163, 0.3);
+        padding: 5px 7px 5px 7px;
+        border-radius: 4px;
+        outline: none;
+    }
+}

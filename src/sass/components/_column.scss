@@ -1,0 +1,40 @@
+@use '../abstracts/variables' as *;
+
+.column {
+    display: flex;
+    flex-direction: column;
+    margin: 1rem 0 0 1rem;
+    width: 230px;
+
+    &__status {
+        display: flex;
+        flex-direction: row;
+        margin-bottom: 1rem;
+
+        div {
+            font-size: 0.65rem;
+            line-height: $height-heading-sm;
+            letter-spacing: 0.1rem;
+            text-transform: uppercase;
+            color: $gray-slate;
+        }
+    }
+}
+
+#bullet-column-0 {
+    color: lightskyblue;
+    font-size: 0.6rem;
+    margin-right: 0.4rem;
+}
+
+#bullet-column-1 {
+    color: $purple-dark;
+    font-size: 0.6rem;
+    margin-right: 0.4rem;
+}
+
+#bullet-column-2 {
+    color: lightgreen;
+    font-size: 0.6rem;
+    margin-right: 0.4rem;
+}

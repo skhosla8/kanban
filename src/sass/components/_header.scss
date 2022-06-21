@@ -1,0 +1,36 @@
+@use '../abstracts/variables' as *;
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    grid-area: head;
+    height: auto;
+    background-color: $gray-dark;
+    color: $white;
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+
+    button {
+        background-color: $purple-dark;
+        color: $white;
+        border-radius: 35px;
+        padding: 0.7rem 1.2rem 0.7rem 0.3rem;
+        border: none;
+        font-size: 0.75rem;
+        cursor: pointer;
+
+        img {
+            width: 6px;
+            height: 6px;
+            margin-right: 0.2rem;
+        }
+    }
+
+    img {
+        margin-left: 1rem;
+        vertical-align: middle;
+        cursor: pointer;
+        height: 15px;
+    }
+}

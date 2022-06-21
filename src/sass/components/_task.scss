@@ -1,0 +1,26 @@
+@use '../abstracts/variables' as *;
+
+.task {
+    background-color: $gray-dark;
+    border-radius: 6px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    cursor: pointer;
+
+    &:hover {
+        .task__title {
+            color: $purple-dark;
+        }
+    }
+
+    &__title {
+        color: $white;
+        font-size: 0.7rem;
+    }
+
+    &__subtasks {
+        color: $gray-slate;
+        font-size: 0.65rem;
+        margin-top: 0.3rem;
+    }
+}

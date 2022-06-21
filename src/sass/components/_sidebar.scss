@@ -1,0 +1,98 @@
+@use '../abstracts/variables' as *;
+
+.sidebar {
+    grid-area: sidebar;
+    position: relative;
+    height: auto;
+    background-color: $gray-dark;
+    border-right: 1px solid $gray-medium;
+    font-size: 0.65rem;
+    line-height: $height-heading-sm;
+    letter-spacing: 0.1rem;
+
+    &__logo {
+        margin: 1.5rem 0 0 1.5rem;
+
+        img {
+            width: 120px;
+            cursor: pointer;
+        }
+    }
+
+    &__boards {
+        margin: 2.1rem 0 0 1.5rem;
+        color: $gray-slate;
+
+        &__all {
+            margin-bottom: 0.9rem;
+        }
+
+        &__board {
+            display: flex;
+            flex-direction: row;
+            border: none;
+            background-color: transparent;
+            color: $gray-slate;
+            padding: 0.7rem 0.9rem 0.7rem 1.5rem;
+            margin: 0 0 0.3rem -1.5rem;
+            border-top-right-radius: 35px;
+            border-bottom-right-radius: 35px;
+            width: 200px;
+
+            a {
+                color: $gray-slate;
+            }
+
+            img {
+                width: 13px;
+                height: 13px;
+                margin-right: 0.5rem;
+            }
+
+            span {
+                margin-left: 0.3rem;
+                font-size: 0.8rem;
+                cursor: pointer;
+            }
+        }
+
+        &__create {
+            display: flex;
+            align-items: center;
+            border: none;
+            background-color: transparent;
+            margin-top: 1rem;
+
+            img {
+                width: 13px;
+                height: 13px;
+                margin-right: 0.5rem;
+            }
+
+            div {
+                margin-left: 0.3rem;
+                font-size: 0.8rem;
+                cursor: pointer;
+
+                img {
+                    width: 6px;
+                    height: 6px;
+                    margin-right: 0.2rem;
+                }
+
+                span {
+                    color: $purple-dark;
+                }
+            }
+
+        }
+    }
+}
+
+.board-active {
+    background-color: $purple-dark;
+
+    span {
+        color: $white;
+    }
+}
