@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import AddSubtaskIcon from "../assets/icon-add-task-mobile-purple-dark.svg";
+import { addTask } from '../redux/reducers/boardsSlice';
 
 function AddTask({ currentBoard }) {
     const [title, setTitle] = useState('');
@@ -8,9 +9,11 @@ function AddTask({ currentBoard }) {
 
     const boards = useSelector(state => state.boards.allBoards);
 
+    const dispatch = useDispatch();
+
     const currBoard = boards.filter(board => board.name === currentBoard);
 
-    const statusOptions = currBoard[0].columns.map((column, i) => (
+    const statusOptions = currBoard[0] && currBoard[0].columns.map((column, i) => (
         <option key={i} value={column.name}>{column.name}</option>
     ));
 
@@ -32,6 +35,36 @@ function AddTask({ currentBoard }) {
         for (const container of subtaskContainers) {
             container.remove();
         }
+    };
+
+    const closeTaskModal = () => {
+        let addTaskOverlay = document.getElementById('add-task-overlay');
+        let taskModal = document.getElementById('add-task-modal');
+
+        taskModal.classList.remove('visible');
+        addTaskOverlay.classList.remove('overlay');
+    };
+
+    const createTask = () => {
+        const statusValue = document.getElementById('add-task-status').value;
+
+        const inputs = document.getElementsByName("subtask");
+        let subtasksArr = [];
+
+        for (let i = 0; i < inputs.length; i++) {
+            subtasksArr.push({ title: inputs[i].value, isCompleted: false });
+        }
+
+        const task = {
+            title: title,
+            description: description,
+            status: statusValue,
+            subtasks: subtasksArr
+        };
+
+        dispatch(addTask({ currentBoard, statusValue, task }));
+
+        closeTaskModal();
     };
 
     return (
@@ -81,7 +114,7 @@ function AddTask({ currentBoard }) {
                     {statusOptions}
                 </select>
 
-                <button>Create Task</button>
+                <button onClick={createTask}>Create Task</button>
             </div>
         </>
     )

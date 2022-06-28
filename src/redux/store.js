@@ -2,10 +2,10 @@ import { configureStore } from '@reduxjs/toolkit';
 import storage from 'redux-persist/lib/storage';
 import { persistReducer } from 'redux-persist';
 import { combineReducers } from 'redux';
-import { boardsReducer } from '../redux/reducers';
+import boardsSlice from './reducers/boardsSlice';
 
 const reducers = combineReducers({
-  boards: boardsReducer
+  boards: boardsSlice
 });
 
 const persistConfig = {
@@ -23,7 +23,7 @@ const store = configureStore({
   })
 });
 
-export default store; 
+export default store;
 
 console.log('Initial state', store.getState());
 

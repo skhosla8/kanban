@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { addBoard } from "../redux/actions";
+import { addBoard } from '../redux/reducers/boardsSlice';
 import AddColumnIcon from "../assets/icon-add-task-mobile-purple-dark.svg";
 
 function CreateBoard() {
@@ -15,16 +15,6 @@ function CreateBoard() {
         addModal.classList.remove('visible');
         addModalOverlay.classList.remove('overlay');
     };
-    
-    const addColumn = () => {
-        let container = document.getElementById("board-columns-container");
-
-        let newColumn = `<div class="create-board__columns">
-             <input type="text" name="columns-array" style='width: 88%; margin-bottom: 0.5rem' /><span style='color:#828FA3; font-size: 1.4rem; margin: -0.7rem 0 0 0.4rem; cursor: pointer'>&#215;</span>
-           </div>`;
-
-        container.insertAdjacentHTML("beforeend", newColumn);
-    };
 
     const removeColumn = () => {
         let columnContainers = document.getElementsByClassName(
@@ -34,6 +24,17 @@ function CreateBoard() {
         for (const container of columnContainers) {
             container.remove();
         }
+    };
+
+    const addColumn = () => {
+        let container = document.getElementById("board-columns-container");
+
+        let newColumn = `<div class="create-board__columns">
+             <input type="text" name="columns-array" style='width: 88%; margin-bottom: 0.5rem' />
+             <span style='color:#828FA3; font-size: 1.4rem; margin: -0.7rem 0 0 0.4rem; cursor: pointer' class="new-board-icons">&#215;</span>
+           </div>`;
+
+        container.insertAdjacentHTML("beforeend", newColumn);
     };
 
     const createBoard = () => {

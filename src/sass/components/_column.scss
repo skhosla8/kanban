@@ -9,7 +9,13 @@
     &__status {
         display: flex;
         flex-direction: row;
+        align-items: center;
         margin-bottom: 1rem;
+
+        span {
+            font-size: 0.6rem;
+            margin-right: 0.4rem;
+        }
 
         div {
             font-size: 0.65rem;
@@ -23,18 +29,24 @@
 
 #bullet-column-0 {
     color: lightskyblue;
-    font-size: 0.6rem;
-    margin-right: 0.4rem;
 }
 
 #bullet-column-1 {
     color: $purple-dark;
-    font-size: 0.6rem;
-    margin-right: 0.4rem;
 }
 
 #bullet-column-2 {
     color: lightgreen;
-    font-size: 0.6rem;
-    margin-right: 0.4rem;
+}
+
+#bullet-column-3 {
+    color: #FAB285;
+}
+
+#bullet-column-4 {
+    color: #C4C75F;
+}
+
+#bullet-column-5 {
+    color: #EE90EE;
 }

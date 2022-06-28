@@ -1,0 +1,74 @@
+@use '../abstracts/variables' as *;
+
+.open-task {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 16%;
+    left: 17%;
+    background-color: $gray-dark;
+    color: $white;
+    width: 300px;
+    height: auto;
+    padding: 1.2rem;
+    border-radius: 6px;
+    font-size: 0.65rem;
+    z-index: 1000;
+
+    &__title {
+        font-size: 0.8rem;
+        word-spacing: 0.1rem;
+    }
+
+    &__description {
+        color: $gray-slate;
+        margin: 1.2rem 0;
+        line-height: 1.2rem;
+    }
+
+    &__subtasks {
+        margin-bottom: 0.7rem;
+    }
+
+    &__subtasks-list {
+        &__item {
+            display: flex;
+            align-items: center;
+            list-style: none;
+            color: $gray-slate;
+            background-color: $charcoal;
+            padding: 0.4rem 0;
+            margin-bottom: 0.5rem;
+
+            input {
+                margin: 0 0.6rem 0 0.5rem;
+                accent-color: $purple-dark;
+            }
+        }
+    }
+
+    label {
+        margin: 0.5rem 0 0.4rem 0;
+    }
+
+    select {
+        outline: none;
+        border: 0.5px solid rgba(130, 143, 163, 0.3);
+        border-radius: 4px;
+        background-color: transparent;
+        padding: 4px 5px 4px 5px;
+        color: $white;
+        font-size: 0.65rem;
+    }
+
+    button {
+        border: none;
+        padding: 0.5rem 0.9rem;
+        border-radius: 35px;
+        font-size: 0.7rem;
+        cursor: pointer;
+        margin-top: 1.3rem;
+        background-color: $purple-dark;
+        color: $white;
+    }
+}

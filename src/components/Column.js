@@ -1,11 +1,12 @@
 import React from "react";
 import Task from './Task';
 
-function Column({ id, column }) {
+function Column({ id, column, setCurrentTask }) {
   const tasks = column.tasks && column.tasks.map((task, i) => (
     <Task
       key={`task-${i}`}
       task={task}
+      setCurrentTask={setCurrentTask}
     />
   ));
 

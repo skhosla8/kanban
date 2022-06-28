@@ -11,6 +11,15 @@ function Header({ currentBoard }) {
         addTaskModal.classList.add('visible');
     };
 
+
+    const addDeleteModal = () => {
+        let addDeleteOverlay = document.getElementById('add-delete-overlay');
+        let addDeleteModal = document.getElementById('add-delete-modal');
+
+        addDeleteOverlay.classList.add('overlay');
+        addDeleteModal.classList.add('visible');
+    };
+
     return (
         <div className="header">
             <div>{currentBoard}</div>
@@ -20,7 +29,7 @@ function Header({ currentBoard }) {
                     <img src={AddTaskIcon} alt="add-task-icon" />
                     Add New Task
                 </button>
-                <img src={EllipsisIcon} alt="vertical-ellipsis" />
+                <img src={EllipsisIcon} alt="vertical-ellipsis" onClick={addDeleteModal} />
             </div>
 
         </div>

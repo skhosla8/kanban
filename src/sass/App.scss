@@ -6,6 +6,9 @@
 @use './components/task';
 @use './components//createboard';
 @use './components//addtask';
+@use './components/opentask';
+@use './components/editboard';
+@use './components/deleteboard';
 
 .app {
     display: grid;
@@ -18,7 +21,7 @@
     width: 100vw;
     min-height: 100vh;
     font-family: $font-family;
-    overflow: hidden;
+    overflow-y: hidden;
 }
 
 a {

@@ -21,7 +21,6 @@ function Sidebar({ currentBoard, setCurrentBoard }) {
                 btn.classList.remove('board-active');
             }
         })
-
     }, [boards, currentBoard]);
 
     const boardsList = boards.map((board, i) => (
@@ -39,10 +38,16 @@ function Sidebar({ currentBoard, setCurrentBoard }) {
         addModal.classList.add('visible');
     }
 
+    const navigateToHomepage = () => {
+        let homepage = boards[0].name;
+
+        setCurrentBoard(homepage);
+    };
+
     return (
         <div className="sidebar">
             <div className="sidebar__logo">
-                <img src={Logo} alt="logo"></img>
+                <img src={Logo} alt="logo" onClick={navigateToHomepage}></img>
             </div>
 
             <div className="sidebar__boards">
