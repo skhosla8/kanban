@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/kanban/static/css/main.5b3eaa95.css",
-    "main.js": "/kanban/static/js/main.cf44047d.js",
+    "main.css": "/kanban/static/css/main.ecad192e.css",
+    "main.js": "/kanban/static/js/main.3489c996.js",
     "static/media/logo-light.svg": "/kanban/static/media/logo-light.1e20d87d61c965503a5323cc3bd2c827.svg",
     "index.html": "/kanban/index.html",
     "static/media/icon-board-purple-dark.svg": "/kanban/static/media/icon-board-purple-dark.7d2aa674f7a152797520725d5b5f1284.svg",
@@ -11,11 +11,11 @@
     "static/media/icon-add-task-mobile-gray.svg": "/kanban/static/media/icon-add-task-mobile-gray.e9beda75535c1755ebb12a0b511b3374.svg",
     "static/media/icon-add-task-mobile-purple-dark.svg": "/kanban/static/media/icon-add-task-mobile-purple-dark.da5b75cf55eac4e477afa322e0771c05.svg",
     "static/media/icon-add-task-mobile.svg": "/kanban/static/media/icon-add-task-mobile.2a8e26ad102dab09554faa37c9d62c19.svg",
-    "main.5b3eaa95.css.map": "/kanban/static/css/main.5b3eaa95.css.map",
-    "main.cf44047d.js.map": "/kanban/static/js/main.cf44047d.js.map"
+    "main.ecad192e.css.map": "/kanban/static/css/main.ecad192e.css.map",
+    "main.3489c996.js.map": "/kanban/static/js/main.3489c996.js.map"
   },
   "entrypoints": [
-    "static/css/main.5b3eaa95.css",
-    "static/js/main.cf44047d.js"
+    "static/css/main.ecad192e.css",
+    "static/js/main.3489c996.js"
   ]
 }
