@@ -17,7 +17,9 @@ function Main({ currentBoard, setCurrentBoard, currentTask, setCurrentTask }) {
         <Column
             id={`column-${i}`}
             key={i}
+            currentBoard={currentBoard}
             column={column}
+            currentTask={currentTask}
             setCurrentTask={setCurrentTask}
         />
     ));

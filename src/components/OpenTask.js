@@ -18,7 +18,7 @@ function OpenTask({ currentBoard, currentTask }) {
     const handleSubtask = (id) => {
         let subtask = document.getElementById(id);
 
-        if (subtask) subtask.checked = !subtask.checked;
+        if (subtask) subtask.defaultChecked = !subtask.defaultChecked;
 
         let inputs = document.querySelectorAll('.subtasks-inputs');
         let subtasksArr = [];
@@ -37,7 +37,7 @@ function OpenTask({ currentBoard, currentTask }) {
 
     const subtasksList = currentTask.subtasks && currentTask.subtasks.map((subtask, i) => (
         <li className="open-task__subtasks-list__item" key={i}>
-            <input id={`subtask-${i}`} className="subtasks-inputs" type="checkbox" defaultChecked={subtask.isCompleted} onChange={() => handleSubtask(`subtask=${i}`)} />
+            <input key={`input-${i}`} id={`subtask-${i}`} className="subtasks-inputs" type="checkbox" defaultChecked={subtask.isCompleted} onChange={() => handleSubtask(`subtask-${i}`)} />
             <span id={`subtask-title-${i}`} className="subtasks-spans">{subtask.title}</span>
         </li>
     ));
@@ -62,8 +62,9 @@ function OpenTask({ currentBoard, currentTask }) {
         if (status) {
             dispatch(updateTaskStatus({ currentBoard, currStatus, taskTitle, status }));
         }
-    }
 
+        window.location.reload();
+    }
 
     return (
         <>

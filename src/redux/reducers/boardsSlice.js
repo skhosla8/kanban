@@ -456,6 +456,29 @@ export const boardsSlice = createSlice({
 
             return state;
         },
+        updateColumn: (state, action) => {
+            let currBoard = state.allBoards.filter(board => board.name === action.payload.currentBoard);
+            let currColumn = currBoard[0].columns.filter(column => column.name === action.payload.taskStatus);
+            let currTask = currColumn[0].tasks.findIndex(task => task.title === action.payload.taskTitle);
+    
+            let dropColumn = currBoard[0].columns.filter(column => column.name === action.payload.dropColumnName);
+
+            dropColumn[0].tasks.push(action.payload.currentTask);
+            currColumn[0].tasks.splice(currTask, 1);
+        
+            return state;
+        },
+        updateDropStatus: (state, action) => {
+            let currBoard = state.allBoards.filter(board => board.name === action.payload.currentBoard);
+            let currColumn = currBoard[0].columns.filter(column => column.name === action.payload.status);
+            let task = currColumn && currColumn[0] && currColumn[0].tasks.filter(task => task.title === action.payload.taskTitle);
+
+            if (task[0]){
+            task[0].status = action.payload.status;
+            }
+
+            return state;
+        },
         removeExistingColumn: (state, action) => {
             let currBoard = state.allBoards.filter(board => board.name === action.payload.currentBoard);
             let columnToRemove = currBoard[0].columns.findIndex(column => column.name === action.payload.columnName);
@@ -499,6 +522,6 @@ export const boardsSlice = createSlice({
     }
 });
 
-export const { addBoard, deleteBoard, addNewColumn, removeExistingColumn, addTask, updateTaskStatus, updateSubtasks } = boardsSlice.actions;
+export const { addBoard, deleteBoard, addNewColumn, updateColumn, updateDropStatus, removeExistingColumn, addTask, updateTaskStatus, updateSubtasks } = boardsSlice.actions;
 
 export default boardsSlice.reducer;
