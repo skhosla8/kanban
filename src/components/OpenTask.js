@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { updateTaskStatus, updateSubtasks } from '../redux/reducers/boardsSlice';
 
-function OpenTask({ currentBoard, currentTask }) {
+function OpenTask({ currentBoard, currentTask, setCurrentTask }) {
     const [status, setStatus] = useState('');
 
     const dispatch = useDispatch();
@@ -63,7 +63,7 @@ function OpenTask({ currentBoard, currentTask }) {
             dispatch(updateTaskStatus({ currentBoard, currStatus, taskTitle, status }));
         }
 
-        window.location.reload();
+        setCurrentTask('');
     }
 
     return (

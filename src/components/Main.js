@@ -51,6 +51,7 @@ function Main({ currentBoard, setCurrentBoard, currentTask, setCurrentTask }) {
                 <OpenTask
                     currentBoard={currentBoard}
                     currentTask={currentTask}
+                    setCurrentTask={setCurrentTask}
                 />
                 <EditBoard
                     currentBoard={currentBoard}
