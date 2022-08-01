@@ -1,12 +1,34 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { addBoard } from '../redux/reducers/boardsSlice';
 import AddColumnIcon from "../assets/icon-add-task-mobile-purple-dark.svg";
 
 function CreateBoard() {
     const [boardName, setBoardName] = useState("");
+    const [boards, setBoards] = useState([]);
 
     const dispatch = useDispatch();
+
+    const boardsCollection = document.getElementsByClassName('create-board__columns');
+
+    const removeColumn = (id) => {
+        let columnContainers = document.getElementsByClassName(
+            'create-board__columns'
+        );
+
+        for (const container of columnContainers) {
+            if (container.id === id) {
+                container.remove();
+            }
+        }
+    };
+
+    const renderedBoards = boards && boards.slice(2).map((board, i) => (
+        <div key={i} id={`column-${i + 2}`} className='create-board__columns'>
+            <input type='text' name='columns-array' defaultValue='' />
+            <span className='new-board-icons' onClick={() => removeColumn(`column-${i + 2}`)}>&#215;</span>
+        </div>
+    ));
 
     const closeBoardModal = () => {
         let addModalOverlay = document.getElementById('add-modal-overlay');
@@ -16,29 +38,17 @@ function CreateBoard() {
         addModalOverlay.classList.remove('overlay');
     };
 
-    const removeColumn = () => {
-        let columnContainers = document.getElementsByClassName(
-            "create-board__columns"
-        );
-
-        for (const container of columnContainers) {
-            container.remove();
-        }
-    };
-
     const addColumn = () => {
-        let container = document.getElementById("board-columns-container");
-
-        let newColumn = `<div class="create-board__columns">
-             <input type="text" name="columns-array" style='width: 88%; margin-bottom: 0.5rem' />
-             <span style='color:#828FA3; font-size: 1.4rem; margin: -0.7rem 0 0 0.4rem; cursor: pointer' class="new-board-icons">&#215;</span>
+        let newColumn = `<div class='create-board__columns'>
+             <input type='text' name='columns-array' />
+             <span class='new-board-icons'>&#215;</span>
            </div>`;
 
-        container.insertAdjacentHTML("beforeend", newColumn);
+        setBoards([...boards, newColumn]);
     };
 
     const createBoard = () => {
-        let inputs = document.getElementsByName("columns-array");
+        let inputs = document.getElementsByName('columns-array');
         let columnsArr = [];
 
         for (let i = 0; i < inputs.length; i++) {
@@ -54,6 +64,10 @@ function CreateBoard() {
             closeBoardModal();
         }
     };
+
+    useEffect(() => {
+        setBoards([...boardsCollection]);
+    }, [boardsCollection]);
 
     return (
         <>
@@ -71,19 +85,21 @@ function CreateBoard() {
 
                 <div id="board-columns-container">
                     <label>Board Columns</label>
-                    <div className="create-board__columns">
+                    <div id="column-0" className="create-board__columns">
                         <input type="text" name="columns-array" defaultValue="Todo" />
-                        <span className="columns-icon" onClick={removeColumn}>
+                        <span className="columns-icon" onClick={() => removeColumn(`column-${0}`)}>
                             &#215;
                         </span>
                     </div>
 
-                    <div className="create-board__columns">
+                    <div id="column-1" className="create-board__columns">
                         <input type="text" name="columns-array" defaultValue="Doing" />
-                        <span className="columns-icon" onClick={removeColumn}>
+                        <span className="columns-icon" onClick={() => removeColumn(`column-${1}`)}>
                             &#215;
                         </span>
                     </div>
+
+                    {renderedBoards}
                 </div>
 
                 <button className="create-board__add" onClick={addColumn}>

@@ -1,14 +1,32 @@
-import React from "react";
+import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import AddColumnIcon from "../assets/icon-add-task-mobile-purple-dark.svg";
 import { addNewColumn, removeExistingColumn } from "../redux/reducers/boardsSlice";
 
 function EditBoard({ currentBoard }) {
+    const [columns, setColumns] = useState([]);
+
     const board = useSelector((state) =>
         state.boards.allBoards.filter((board) => board.name === currentBoard)
     );
 
     const dispatch = useDispatch();
+
+    const removeNewColumn = (id) => {
+        let columnContainers = document.getElementsByClassName('edit-board__new-column');
+
+        for (const column of columnContainers) {
+            if (column.id === id) {
+                column.remove();
+            }
+        }
+    };
+
+    const renderedColumns = columns && columns.map((column, i) => (
+        <div id={`new-column-${i}`} key={i} className='edit-board__columns edit-board__new-column'>
+            <input name='edit-column-input' /><span className='edit-board__columns-icon' onClick={() => removeNewColumn(`new-column-${i}`)}>&#215;</span>
+        </div>
+    ));
 
     const removeColumn = (inputId) => {
         let input = document.getElementById(inputId);
@@ -18,34 +36,25 @@ function EditBoard({ currentBoard }) {
     };
 
     const addColumn = () => {
-        let container = document.getElementById("edit-columns-container");
-
-        let tempColumn = `<div class="edit-board__new-column">
-             <input type="text" name="edit-column-input" style='width: 88%; margin-bottom: 0.5rem' /><span class="edit-board__columns-icon" style='color:#828FA3; font-size: 1.4rem; margin: -0.7rem 0 0 0.4rem; cursor: pointer'>&#215;</span>
+        let tempColumn = `<div class='edit-board__columns'>
+             <input type='text' /><span class='edit-board__columns-icon'>&#215;</span>
            </div>`;
 
-        let newInputs = document.getElementsByClassName('edit-board__new-column');
-        let allInputs = document.getElementsByClassName('edit-board__columns');
-
-        if (!allInputs.length || allInputs.length <= 5) {
-            if (!newInputs.length || newInputs.length < 1) {
-                container.insertAdjacentHTML("beforeend", tempColumn);
-            }
-        }
+        setColumns([...columns, tempColumn]);
     };
 
-    const columns = board && board[0] && board[0].columns.map((column, i) => (
-        <div key={i} id={`edit-column-${i}`} className="edit-board__columns">
+    const initialColumns = board && board[0] && board[0].columns.map((column, i) => (
+        <div key={i} id={`column-${i}`} className='edit-board__columns'>
             <input
-                id={`edit-column-input-${i}`}
-                type="text"
+                id={`column-input-${i}`}
+                type='text'
                 value={column.name}
                 readOnly
             />
             <span
-                className="edit-board__columns-icon"
+                className='edit-board__columns-icon'
                 onClick={() =>
-                    removeColumn(`edit-column-input-${i}`)
+                    removeColumn(`column-input-${i}`)
                 }
             >
                 &#215;
@@ -54,15 +63,15 @@ function EditBoard({ currentBoard }) {
     ));
 
     const closeEditBoardModal = () => {
-        let editBoardOverlay = document.getElementById("edit-board-overlay");
-        let editBoardModal = document.getElementById("edit-board-modal");
+        let editBoardOverlay = document.getElementById('edit-board-overlay');
+        let editBoardModal = document.getElementById('edit-board-modal');
 
-        editBoardOverlay.classList.remove("overlay");
-        editBoardModal.classList.remove("visible");
+        editBoardOverlay.classList.remove('overlay');
+        editBoardModal.classList.remove('visible');
     };
 
     const updateBoard = () => {
-        let inputs = document.getElementsByName("edit-column-input");
+        let inputs = document.getElementsByName('edit-column-input');
 
         for (const input of inputs) {
             let value = input.value;
@@ -70,14 +79,9 @@ function EditBoard({ currentBoard }) {
             let newColumn = { name: value, tasks: [] };
 
             if (value) {
-                dispatch(addNewColumn({ currentBoard, newColumn }))
+                dispatch(addNewColumn({ currentBoard, newColumn }));
+                setColumns([]);
             }
-        }
-
-        let newColumns = document.getElementsByClassName('edit-board__new-column');
-
-        for (const column of newColumns) {
-            column.remove();
         }
 
         closeEditBoardModal();
@@ -99,7 +103,8 @@ function EditBoard({ currentBoard }) {
 
                 <div id="edit-columns-container">
                     <label>Board Columns</label>
-                    {columns}
+                    {initialColumns}
+                    {renderedColumns}
                 </div>
 
                 <button onClick={addColumn}>

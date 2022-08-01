@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import AddSubtaskIcon from "../assets/icon-add-task-mobile-purple-dark.svg";
 import { addTask } from '../redux/reducers/boardsSlice';
@@ -6,10 +6,13 @@ import { addTask } from '../redux/reducers/boardsSlice';
 function AddTask({ currentBoard }) {
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
+    const [subtasks, setSubtasks] = useState([]);
 
     const boards = useSelector(state => state.boards.allBoards);
 
     const dispatch = useDispatch();
+
+    const subtasksCollection = document.getElementsByClassName('add-task__subtask');
 
     const currBoard = boards.filter(board => board.name === currentBoard);
 
@@ -17,24 +20,30 @@ function AddTask({ currentBoard }) {
         <option key={i} value={column.name}>{column.name}</option>
     ));
 
-    const addSubtask = () => {
-        let container = document.getElementById("subtasks-container");
-
-        let newSubtask = `<div class="add-task__subtask">
-             <input type="text" name="subtask" style='width: 88%; margin-bottom: 0.5rem' /><span style='color:#828FA3; font-size: 1.4rem; margin: -0.7rem 0 0 0.4rem; cursor: pointer'>&#215;</span>
-           </div>`;
-
-        container.insertAdjacentHTML("beforeend", newSubtask);
-    };
-
-    const removeSubtask = () => {
+    const removeSubtask = (id) => {
         let subtaskContainers = document.getElementsByClassName(
-            "add-task__subtask"
+            'add-task__subtask'
         );
 
         for (const container of subtaskContainers) {
-            container.remove();
+            if (container.id === id) {
+                container.remove()
+            }
         }
+    };
+
+    const renderedSubtasks = subtasks && subtasks.slice(2).map((subtask, i) => (
+        <div key={i} id={`subtask-${i + 2}`} className='add-task__subtask'>
+            <input type='text' name='subtask' defaultValue='' /><span className='remove-icon' onClick={() => removeSubtask(`subtask-${i + 2}`)}>&#215;</span>
+        </div>
+    ));
+
+    const addSubtask = () => {
+        let newSubtask = `<div class='add-task__subtask'>
+             <input type='text' /><span class='remove-icon'>&#215;</span>
+           </div>`;
+
+        setSubtasks([...subtasks, newSubtask]);
     };
 
     const closeTaskModal = () => {
@@ -48,7 +57,7 @@ function AddTask({ currentBoard }) {
     const createTask = () => {
         const statusValue = document.getElementById('add-task-status').value;
 
-        const inputs = document.getElementsByName("subtask");
+        const inputs = document.getElementsByName('subtask');
         let subtasksArr = [];
 
         for (let i = 0; i < inputs.length; i++) {
@@ -66,6 +75,10 @@ function AddTask({ currentBoard }) {
 
         closeTaskModal();
     };
+
+    useEffect(() => {
+        setSubtasks([...subtasksCollection]);
+    }, [subtasksCollection]);
 
     return (
         <>
@@ -94,15 +107,17 @@ function AddTask({ currentBoard }) {
                 <div id="subtasks-container">
                     <label>Subtasks</label>
 
-                    <div className="add-task__subtask">
+                    <div id="subtask-0" className="add-task__subtask">
                         <input type="text" name="subtask" defaultValue="" placeholder="e.g. Make coffee" />
-                        <span onClick={removeSubtask}>&#215;</span>
+                        <span className="remove-icon" onClick={() => removeSubtask(`subtask-${0}`)}>&#215;</span>
                     </div>
 
-                    <div className="add-task__subtask">
+                    <div id="subtask-1" className="add-task__subtask">
                         <input type="text" name="subtask" defaultValue="" placeholder="e.g. Drink coffee & smile" />
-                        <span onClick={removeSubtask}>&#215;</span>
+                        <span className="remove-icon" onClick={() => removeSubtask(`subtask-${1}`)}>&#215;</span>
                     </div>
+
+                    {renderedSubtasks}
                 </div>
 
                 <button onClick={addSubtask}>
