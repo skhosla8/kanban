@@ -7,6 +7,7 @@ import './css/App.css';
 function App() {
   const [currentBoard, setCurrentBoard] = useState('Platform Launch');
   const [currentTask, setCurrentTask] = useState({});
+  const [deleteItem, setDeleteItem] = useState('');
 
   useEffect(() => {
     setCurrentBoard('Platform Launch');
@@ -17,6 +18,7 @@ function App() {
       <Header
         currentBoard={currentBoard}
         setCurrentBoard={setCurrentBoard}
+        setDeleteItem={setDeleteItem}
       />
       <Sidebar
         currentBoard={currentBoard}
@@ -27,6 +29,8 @@ function App() {
         setCurrentBoard={setCurrentBoard}
         currentTask={currentTask}
         setCurrentTask={setCurrentTask}
+        deleteItem={deleteItem}
+        setDeleteItem={setDeleteItem}
       />
     </div>
   )

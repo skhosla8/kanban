@@ -1,6 +1,7 @@
 @use '../abstracts/variables' as *;
 
 .task {
+    position: relative;
     background-color: $gray-dark;
     border-radius: 6px;
     padding: 1rem;

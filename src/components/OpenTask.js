@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { updateTaskStatus, updateSubtasks } from '../redux/reducers/boardsSlice';
+import EllipsisIcon from '../assets/icon-vertical-ellipsis.svg';
 
-function OpenTask({ currentBoard, currentTask, setCurrentTask }) {
+function OpenTask({ currentBoard, currentTask, setCurrentTask, setDeleteItem }) {
     const [status, setStatus] = useState('');
+    const [toggleModal, setToggleModal] = useState('');
 
     const dispatch = useDispatch();
 
@@ -52,25 +54,49 @@ function OpenTask({ currentBoard, currentTask, setCurrentTask }) {
         setStatus(e.target.value);
     }
 
-    const updateTask = () => {
+    const closeTaskModal = () => {
         let openTaskOverlay = document.getElementById('open-task-overlay');
         let openTaskModal = document.getElementById('open-task-modal');
 
         openTaskOverlay.classList.remove('overlay');
         openTaskModal.classList.remove('visible');
+    }
+
+    const openDeleteModal = () => {
+        let addDeleteOverlay = document.getElementById('add-delete-overlay');
+        let addDeleteModal = document.getElementById('add-delete-modal');
+
+        addDeleteOverlay.classList.add('overlay');
+        addDeleteModal.classList.add('visible');
+
+        setDeleteItem('task');
+        setToggleModal(false);
+    };
+
+    const updateTask = () => {
+        closeTaskModal();
 
         if (status) {
             dispatch(updateTaskStatus({ currentBoard, currStatus, taskTitle, status }));
         }
 
         setCurrentTask('');
+        setToggleModal(false);
     }
+
+    useEffect(() => {
+        setToggleModal(false);
+    }, []);
 
     return (
         <>
             <div id="open-task-overlay"></div>
             <div id="open-task-modal" className="open-task">
-                <div className="open-task__title">{currentTask.title}</div>
+                <div className="open-task__container">
+                    <div className="open-task__title">{currentTask.title}</div>
+                    <img src={EllipsisIcon} alt="edit-task-icon" onClick={() => setToggleModal(!toggleModal)} />
+                </div>
+                {toggleModal && <div className="open-task__delete" onClick={() => {closeTaskModal(); openDeleteModal() }}>Delete Task</div>}
                 <div className="open-task__description">{currentTask.description ? currentTask.description : 'No description'}</div>
                 <div className="open-task__subtasks">Subtasks ({completedTasks} of {allTasks})</div>
 

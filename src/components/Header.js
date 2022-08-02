@@ -2,7 +2,7 @@ import React from 'react';
 import AddTaskIcon from '../assets/icon-add-task-mobile.svg';
 import EllipsisIcon from '../assets/icon-vertical-ellipsis.svg';
 
-function Header({ currentBoard }) {
+function Header({ currentBoard, setDeleteItem }) {
     const addTaskModal = () => {
         let addTaskOverlay = document.getElementById('add-task-overlay');
         let addTaskModal = document.getElementById('add-task-modal');
@@ -18,6 +18,8 @@ function Header({ currentBoard }) {
 
         addDeleteOverlay.classList.add('overlay');
         addDeleteModal.classList.add('visible');
+
+        setDeleteItem('board');
     };
 
     return (

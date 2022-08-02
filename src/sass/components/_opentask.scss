@@ -15,6 +15,32 @@
     font-size: 0.65rem;
     z-index: 1000;
 
+    &__container {
+        position: relative;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        img {
+            width: 5px;
+            height: 15px;
+            margin-right: 0.03rem;
+            cursor: pointer;
+        }
+    }
+
+    &__delete {
+        position: absolute;
+        top: 1;
+        right: 0;
+        margin: 2rem -2rem 0 0;
+        padding: 0.7rem 2rem 0.7rem 0.6rem;
+        background-color: $charcoal;
+        border-radius: 6px;
+        color: $red-dark;
+        cursor: pointer;
+    }
+
     &__title {
         font-size: 0.8rem;
         word-spacing: 0.1rem;

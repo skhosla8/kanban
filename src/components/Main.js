@@ -6,9 +6,9 @@ import CreateBoard from './CreateBoard';
 import AddTask from './AddTask';
 import OpenTask from './OpenTask';
 import EditBoard from './EditBoard';
-import DeleteBoard from './DeleteBoard';
+import DeleteItem from './DeleteItem';
 
-function Main({ currentBoard, setCurrentBoard, currentTask, setCurrentTask }) {
+function Main({ currentBoard, setCurrentBoard, currentTask, setCurrentTask, deleteItem, setDeleteItem }) {
     const allBoards = useSelector((state) => state.boards.allBoards);
 
     const selectedBoard = allBoards.filter(board => board.name === currentBoard);
@@ -52,13 +52,16 @@ function Main({ currentBoard, setCurrentBoard, currentTask, setCurrentTask }) {
                     currentBoard={currentBoard}
                     currentTask={currentTask}
                     setCurrentTask={setCurrentTask}
+                    setDeleteItem={setDeleteItem}
                 />
                 <EditBoard
                     currentBoard={currentBoard}
                 />
-                <DeleteBoard
+                <DeleteItem
                     currentBoard={currentBoard}
                     setCurrentBoard={setCurrentBoard}
+                    currentTask={currentTask}
+                    deleteItem={deleteItem}
                 />
             </div>
         </div>
