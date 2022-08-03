@@ -38,6 +38,12 @@
             border-top-right-radius: 35px;
             border-bottom-right-radius: 35px;
             width: 200px;
+            cursor: pointer;
+
+            &:hover {
+                background-color: $white;
+                color: $purple-dark;
+            }
 
             a {
                 color: $gray-slate;
@@ -52,7 +58,6 @@
             span {
                 margin-left: 0.3rem;
                 font-size: 0.8rem;
-                cursor: pointer;
             }
         }
 
@@ -94,5 +99,11 @@
 
     span {
         color: $white;
+    }
+
+    &:hover {
+        span {
+            color: $purple-dark;
+        }
     }
 }

@@ -34,6 +34,11 @@
   border-top-right-radius: 35px;
   border-bottom-right-radius: 35px;
   width: 200px;
+  cursor: pointer;
+}
+.sidebar__boards__board:hover {
+  background-color: #FFFFFF;
+  color: #635FC7;
 }
 .sidebar__boards__board a {
   color: #828FA3;
@@ -46,7 +51,6 @@
 .sidebar__boards__board span {
   margin-left: 0.3rem;
   font-size: 0.8rem;
-  cursor: pointer;
 }
 .sidebar__boards__create {
   display: flex;
@@ -79,6 +83,9 @@
 }
 .board-active span {
   color: #FFFFFF;
+}
+.board-active:hover span {
+  color: #635FC7;
 }
 
 .header {

@@ -17,16 +17,37 @@ function Sidebar({ currentBoard, setCurrentBoard }) {
 
             if (board.name === currentBoard) {
                 btn.classList.add('board-active');
+                btn.firstElementChild.src = BoardIconPurple;
             } else {
                 btn.classList.remove('board-active');
             }
         })
     }, [boards, currentBoard]);
 
+    const setIcon = (id) => {
+        let icons = document.getElementsByClassName('sidebar__boards__board__icon');
+
+        for (const icon of icons) {
+            if (icon.id === id) {
+                icon.setAttribute('src', BoardIconPurple);
+            }
+        }
+    }
+
+    const unsetIcon = (id) => {
+        let icons = document.getElementsByClassName('sidebar__boards__board__icon');
+
+        for (const icon of icons) {
+            if (icon.id === id) {
+                icon.setAttribute('src', icon.nextElementSibling.innerText === currentBoard ? BoardIconWhite : BoardIcon);
+            }
+        }
+    };
+
     const boardsList = boards.map((board, i) => (
-        <button id={`board-${i}`} className="sidebar__boards__board" key={i}>
-            <img src={board.name === currentBoard ? BoardIconWhite : BoardIcon} alt="board-icon" />
-            <span onClick={() => setCurrentBoard(board.name)}>{board.name}</span>
+        <button id={`board-${i}`} className='sidebar__boards__board' key={i} onClick={() => setCurrentBoard(board.name)} onMouseEnter={() => setIcon(`board-icon-${i}`)} onMouseLeave={() => unsetIcon(`board-icon-${i}`)}>
+            <img id={`board-icon-${i}`} className='sidebar__boards__board__icon' src={board.name === currentBoard ? BoardIconWhite : BoardIcon} alt='board-icon' />
+            <span>{board.name}</span>
         </button>
     ));
 
