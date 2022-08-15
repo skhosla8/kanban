@@ -29,8 +29,10 @@ function OpenTask({ currentBoard, currentTask, setCurrentTask, setDeleteItem }) 
             let subtask = document.getElementById(`subtask-title-${i}`);
             if (inputs[i].checked) {
                 subtasksArr.push({ title: subtask.innerHTML, isCompleted: true });
+                subtask.classList.add('line-through');
             } else {
-                subtasksArr.push({ title: subtask.innerHTML, isCompleted: false })
+                subtasksArr.push({ title: subtask.innerHTML, isCompleted: false });
+                subtask.classList.remove('line-through');
             }
         }
 
@@ -86,7 +88,16 @@ function OpenTask({ currentBoard, currentTask, setCurrentTask, setDeleteItem }) 
 
     useEffect(() => {
         setToggleModal(false);
-    }, []);
+
+        let inputs = document.querySelectorAll('.subtasks-inputs');
+
+        for (let i = 0; i < inputs.length; i++) {
+            let subtask = document.getElementById(`subtask-title-${i}`);
+            if (inputs[i].defaultChecked) {
+                subtask.classList.add('line-through');
+            }
+        }
+    }, [currentTask]);
 
     return (
         <>
@@ -96,7 +107,7 @@ function OpenTask({ currentBoard, currentTask, setCurrentTask, setDeleteItem }) 
                     <div className="open-task__title">{currentTask.title}</div>
                     <img src={EllipsisIcon} alt="edit-task-icon" onClick={() => setToggleModal(!toggleModal)} />
                 </div>
-                {toggleModal && <div className="open-task__delete" onClick={() => {closeTaskModal(); openDeleteModal() }}>Delete Task</div>}
+                {toggleModal && <div className="open-task__delete" onClick={() => { closeTaskModal(); openDeleteModal() }}>Delete Task</div>}
                 <div className="open-task__description">{currentTask.description ? currentTask.description : 'No description'}</div>
                 <div className="open-task__subtasks">Subtasks ({completedTasks} of {allTasks})</div>
 

@@ -488,6 +488,10 @@
   color: #FFFFFF;
 }
 
+.line-through {
+  text-decoration: line-through;
+}
+
 .edit-board {
   display: none;
   flex-direction: column;
