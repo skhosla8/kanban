@@ -2,7 +2,7 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { deleteBoard, deleteTask } from '../redux/reducers/boardsSlice';
 
-function DeleteItem({ currentBoard, setCurrentBoard, currentTask, deleteItem }) {
+function DeleteItem({ currentBoard, setCurrentBoard, currentTask, setCurrentTask, deleteItem }) {
     let updatedBoard = useSelector((state) => state.boards.allBoards[0]).name;
     let title = currentTask.title;
     let statusValue = currentTask.status;
@@ -25,6 +25,7 @@ function DeleteItem({ currentBoard, setCurrentBoard, currentTask, deleteItem }) 
             dispatch(deleteTask({ currentBoard, statusValue, title }));
         }
 
+        setCurrentTask('');
         removeDeleteModal();
     };
 

@@ -61,6 +61,7 @@ function Main({ currentBoard, setCurrentBoard, currentTask, setCurrentTask, dele
                     currentBoard={currentBoard}
                     setCurrentBoard={setCurrentBoard}
                     currentTask={currentTask}
+                    setCurrentTask={setCurrentTask}
                     deleteItem={deleteItem}
                 />
             </div>
